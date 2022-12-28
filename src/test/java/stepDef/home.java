@@ -2,18 +2,26 @@ package stepDef;
 
 import config.env;
 import helper.accessFile;
+import helper.requestAPI;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.restassured.RestAssured;
+import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
 import objects.pageGeneral;
 import objects.pageHome;
+import org.json.simple.JSONObject;
+import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.net.MalformedURLException;
 import java.util.HashMap;
 import java.util.Random;
+
+import static io.restassured.RestAssured.given;
 
 public class home extends env {
 
@@ -23,6 +31,8 @@ public class home extends env {
 
     accessFile accessFile = new accessFile();
     String file_companyName = "src/test/resources/data/companyName.txt";
+
+    requestAPI requestAPI = new requestAPI();
 
     @Given("user is on home page")
     public void user_is_on_home_page() {
@@ -42,7 +52,8 @@ public class home extends env {
         );
         WebElement txt_companyName = driver.findElement(pageGeneral.getInput_Name());
         txt_companyName.click();
-        String companyName = "Company" + rand.nextInt(10000);
+        String companyName = requestAPI.getCompanyName();
+//        String companyName = "Company" + rand.nextInt(10000);
         txt_companyName.sendKeys(companyName);
         accessFile.writeToFile(file_companyName, companyName);
     }

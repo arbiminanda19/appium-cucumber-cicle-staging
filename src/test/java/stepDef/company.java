@@ -32,11 +32,6 @@ public class company extends env {
         );
     }
 
-    @When("user click add button")
-    public void user_click_add_button() {
-        driver.findElement(pageCompany.getBtn_add()).click();
-    }
-
     @And("user click add team")
     public void user_click_add_team() {
         driver.findElement(pageCompany.getBtn_addTeam()).click();
@@ -59,6 +54,11 @@ public class company extends env {
         wait.until(
                 ExpectedConditions.visibilityOfElementLocated(pageCompany.getBtn_team())
         );
+    }
+
+    @When("user open certain team")
+    public void user_open_certain_team() {
+
     }
 
 }
