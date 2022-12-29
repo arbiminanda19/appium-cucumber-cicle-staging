@@ -4,19 +4,13 @@ import com.github.javafaker.Faker;
 import config.env;
 import helper.accessFile;
 import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.cucumber.java.sl.In;
 import objects.pageCompany;
 import objects.pageGeneral;
-import objects.pageHome;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-
-import java.util.HashMap;
-import java.util.Random;
 
 public class company extends env {
 

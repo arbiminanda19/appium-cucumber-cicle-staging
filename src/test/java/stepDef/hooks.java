@@ -2,7 +2,6 @@ package stepDef;
 
 import config.env;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.ios.IOSDriver;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import org.openqa.selenium.remote.DesiredCapabilities;

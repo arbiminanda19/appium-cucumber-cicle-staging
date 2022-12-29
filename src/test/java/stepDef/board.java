@@ -6,9 +6,7 @@ import helper.accessFile;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import objects.pageBoard;
-import objects.pageCompany;
 import objects.pageGeneral;
-import objects.pageHome;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 

@@ -1,11 +1,8 @@
 package stepDef;
 
 import config.env;
-import objects.pageHome;
 import objects.pageOnBoard;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-
-import java.net.MalformedURLException;
 
 public class onBoard extends env {
 
