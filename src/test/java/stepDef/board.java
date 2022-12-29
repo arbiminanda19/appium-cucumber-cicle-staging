@@ -1,5 +1,6 @@
 package stepDef;
 
+import com.github.javafaker.Faker;
 import config.env;
 import helper.accessFile;
 import io.cucumber.java.en.Then;
@@ -17,7 +18,7 @@ public class board extends env {
 
     pageBoard pageBoard = new pageBoard();
     pageGeneral pageGeneral = new pageGeneral();
-    Random rand = new Random();
+    Faker faker = new Faker();
 
     accessFile accessFile = new accessFile();
     String file_boardName = "src/test/resources/data/boardName.txt";
@@ -32,7 +33,7 @@ public class board extends env {
 
     @When("user input board name")
     public void user_input_board_name() {
-        String boardName = "Board" + rand.nextInt(10000);
+        String boardName = "Board" + faker.number().numberBetween(11111, 99999);
         accessFile.writeToFile(file_boardName, boardName);
         wait.until(
                 ExpectedConditions.visibilityOfElementLocated(pageGeneral.getInput_Name())
@@ -56,7 +57,7 @@ public class board extends env {
 
     @When("user input card name")
     public void user_input_card_name() {
-        String cardName = "Card" + rand.nextInt(10000);
+        String cardName = "Card" + faker.number().numberBetween(11111, 99999);
         accessFile.writeToFile(file_cardName, cardName);
         wait.until(
                 ExpectedConditions.visibilityOfElementLocated(pageBoard.getInput_cardName())

@@ -1,14 +1,17 @@
 package stepDef;
 
+import com.github.javafaker.Faker;
 import config.env;
 import helper.accessFile;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.cucumber.java.sl.In;
 import objects.pageCompany;
 import objects.pageGeneral;
 import objects.pageHome;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
@@ -17,10 +20,9 @@ import java.util.Random;
 
 public class company extends env {
 
-    pageHome pageHome = new pageHome();
     pageGeneral pageGeneral = new pageGeneral();
     pageCompany pageCompany = new pageCompany();
-    Random rand = new Random();
+    Faker faker = new Faker();
 
     accessFile accessFile = new accessFile();
     String file_teamName = "src/test/resources/data/teamName.txt";
@@ -39,7 +41,7 @@ public class company extends env {
 
     @And("user input team name")
     public void user_input_team_name() {
-        String teamName = "Team" + rand.nextInt(10000);
+        String teamName = "Team" + faker.number().numberBetween(11111, 99999);
         accessFile.writeToFile(file_teamName, teamName);
         wait.until(
                 ExpectedConditions.visibilityOfElementLocated(pageGeneral.getInput_Name())
@@ -58,11 +60,12 @@ public class company extends env {
 
     @When("user open certain team")
     public void user_open_certain_team() {
+        By btn_certainTeam = pageCompany.getBtn_certainTeam(accessFile.readFromFile(file_teamName));
         driver.findElement(pageCompany.getScroll_toCertainTeam());
         wait.until(
-                ExpectedConditions.elementToBeClickable(pageCompany.getBtn_certainTeam(accessFile.readFromFile(file_teamName)))
+                ExpectedConditions.elementToBeClickable(btn_certainTeam)
         );
-        driver.findElement(pageCompany.getBtn_certainTeam(accessFile.readFromFile(file_teamName))).click();
+        driver.findElement(btn_certainTeam).click();
     }
 
 }
