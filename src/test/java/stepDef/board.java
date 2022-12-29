@@ -21,6 +21,7 @@ public class board extends env {
 
     accessFile accessFile = new accessFile();
     String file_boardName = "src/test/resources/data/boardName.txt";
+    String file_cardName = "src/test/resources/data/cardName.txt";
 
     @Then("user is on board page")
     public void user_is_on_board_page() {
@@ -44,7 +45,37 @@ public class board extends env {
     @Then("user see board created")
     public void user_see_board_created() {
         wait.until(
-                ExpectedConditions.visibilityOfElementLocated(pageBoard.getBtn_addNewCard())
+                ExpectedConditions.visibilityOfElementLocated(pageBoard.getTxt_boardName(accessFile.readFromFile(file_boardName)))
         );
     }
+
+    @When("user click add new card")
+    public void user_click_add_new_card() {
+        driver.findElement(pageBoard.getBtn_addNewCard()).click();
+    }
+
+    @When("user input card name")
+    public void user_input_card_name() {
+        String cardName = "Card" + rand.nextInt(10000);
+        accessFile.writeToFile(file_cardName, cardName);
+        wait.until(
+                ExpectedConditions.visibilityOfElementLocated(pageBoard.getInput_cardName())
+        );
+        WebElement txt_cardName = driver.findElement(pageBoard.getInput_cardName());
+        txt_cardName.click();
+        txt_cardName.sendKeys(cardName);
+    }
+
+    @When("user click confirm card name")
+    public void user_click_confirm_card_name() {
+        driver.findElement(pageBoard.getBtn_confirmCardName()).click();
+    }
+
+    @Then("user see card created")
+    public void user_see_card_created() {
+        wait.until(
+                ExpectedConditions.visibilityOfElementLocated(pageBoard.getBtn_cardContainer(accessFile.readFromFile(file_cardName)))
+        );
+    }
+
 }

@@ -59,7 +59,10 @@ public class company extends env {
     @When("user open certain team")
     public void user_open_certain_team() {
         driver.findElement(pageCompany.getScroll_toCertainTeam());
-        driver.findElement(pageCompany.getBtn_certainTeam());
+        wait.until(
+                ExpectedConditions.elementToBeClickable(pageCompany.getBtn_certainTeam(accessFile.readFromFile(file_teamName)))
+        );
+        driver.findElement(pageCompany.getBtn_certainTeam(accessFile.readFromFile(file_teamName))).click();
     }
 
 }

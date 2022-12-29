@@ -2,6 +2,7 @@ package stepDef;
 
 import config.env;
 import helper.accessFile;
+import helper.requestAPI;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -16,6 +17,7 @@ import java.util.Random;
 public class general extends env {
 
     pageGeneral pageGeneral = new pageGeneral();
+    requestAPI requestAPI = new requestAPI();
 
     @When("user click add button")
     public void user_click_add_button() {
@@ -26,7 +28,7 @@ public class general extends env {
     public void user_input_description() {
         WebElement txt_companyDesc = driver.findElement(pageGeneral.getInput_Desc());
         txt_companyDesc.click();
-        txt_companyDesc.sendKeys("description");
+        txt_companyDesc.sendKeys(requestAPI.getCompanyName());
     }
     @And("user click create button")
     public void user_click_create_button() {

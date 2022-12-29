@@ -10,7 +10,6 @@ import java.net.MalformedURLException;
 public class onBoard extends env {
 
     pageOnBoard pageOnBoard = new pageOnBoard();
-    pageHome pageHome = new pageHome();
 
     public void user_has_open_cicle_app() {
         wait.until(
