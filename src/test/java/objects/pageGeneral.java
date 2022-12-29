@@ -28,4 +28,14 @@ public class pageGeneral {
         By btn_submit = By.xpath("//android.widget.Button[@content-desc='Submit']");
         return btn_submit;
     }
+
+    public By getBtn_apply() {
+        By btn_apply = By.xpath("//android.widget.Button[@content-desc='Apply']");
+        return btn_apply;
+    }
+
+    public By getBtn_reset() {
+        By btn_reset = By.xpath("//android.widget.Button[@content-desc='reset']");
+        return btn_reset;
+    }
 }

@@ -32,4 +32,14 @@ public class general extends env {
         driver.findElement(pageGeneral.getBtn_submit()).click();
     }
 
+    @When("user click apply")
+    public void user_click_apply() {
+        driver.findElement(pageGeneral.getBtn_apply()).click();
+    }
+
+    @When("user click reset")
+    public void user_click_reset() {
+        driver.findElement(pageGeneral.getBtn_reset()).click();
+    }
+
 }

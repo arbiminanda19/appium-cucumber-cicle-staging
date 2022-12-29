@@ -3,7 +3,6 @@ package stepDef;
 import com.github.javafaker.Faker;
 import config.env;
 import helper.accessFile;
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import objects.pageBoard;
@@ -11,8 +10,6 @@ import objects.pageGeneral;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-
-import java.util.Random;
 
 public class board extends env {
 
@@ -23,6 +20,10 @@ public class board extends env {
     accessFile accessFile = new accessFile();
     String file_boardName = "src/test/resources/data/boardName.txt";
     String file_cardName = "src/test/resources/data/cardName.txt";
+
+    String file_cardAmount = "src/test/resources/data/cardAmount.txt";
+
+    Integer amountCardFiltered = 0;
 
     @Then("user is on board page")
     public void user_is_on_board_page() {
@@ -84,6 +85,32 @@ public class board extends env {
         wait.until(
                 ExpectedConditions.visibilityOfElementLocated(pageBoard.getBtn_cardContainer(accessFile.readFromFile(file_cardName)))
         );
+    }
+
+    @When("user click filter button")
+    public void user_click_filter_button() {
+        driver.findElement(pageBoard.getBtn_filter()).click();
+    }
+    @When("user input card name for filter")
+    public void user_input_card_name_for_filter() {
+        driver.findElement(pageBoard.getInput_filterCardName()).click();
+        driver.findElement(pageBoard.getInput_filterCardName()).sendKeys(accessFile.readFromFile(file_cardName));
+        driver.hideKeyboard();
+    }
+
+    @Then("user see filtered card")
+    public void user_see_filtered_card() {
+        wait.until(
+                ExpectedConditions.visibilityOfElementLocated(pageBoard.getBtn_cardContainer(accessFile.readFromFile(file_cardName)))
+        );
+        amountCardFiltered = driver.findElements(pageBoard.getBox_cardContainer()).size();
+        accessFile.writeToFile(file_cardAmount, String.valueOf(amountCardFiltered));
+    }
+
+    @Then("user see all cards")
+    public void user_see_all_cards() {
+        amountCardFiltered = driver.findElements(pageBoard.getBox_cardContainer()).size();
+        Assert.assertTrue(Integer.valueOf(accessFile.readFromFile(file_cardAmount)) < amountCardFiltered);
     }
 
 }

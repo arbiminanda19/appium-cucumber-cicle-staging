@@ -38,4 +38,19 @@ public class pageBoard {
         By btn_switchPrivateCard = By.xpath("//android.view.View[@content-desc='Private Card']/android.widget.Switch");
         return btn_switchPrivateCard;
     }
+
+    public By getBox_cardContainer() {
+        By box_cardContainer = By.xpath("//*/android.view.View[3]/android.view.View/android.view.View");
+        return box_cardContainer;
+    }
+
+    public By getBtn_filter() {
+        By btn_filter = By.xpath("//*/android.view.View[1]/android.view.View[2]");
+        return btn_filter;
+    }
+
+    public By getInput_filterCardName() {
+        By input_filterCardName = By.xpath("//*/android.view.View/android.view.View/android.widget.EditText[1]");
+        return input_filterCardName;
+    }
 }

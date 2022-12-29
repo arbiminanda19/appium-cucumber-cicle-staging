@@ -30,11 +30,7 @@ public class hooks extends env {
         driver = new AndroidDriver(url, capabilities);
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         wait = new WebDriverWait(driver, duration);
-        onBoard.user_has_open_cicle_app();
-        onBoard.user_click_skip_button();
-        onBoard.user_move_to_sign_in_page();
-        onBoard.user_click_sign_in_by_google();
-        onBoard.user_choose_account();
+        onBoard.login();
     }
 
     @After
