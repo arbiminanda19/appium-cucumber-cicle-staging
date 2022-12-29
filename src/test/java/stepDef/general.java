@@ -10,7 +10,6 @@ import org.openqa.selenium.WebElement;
 public class general extends env {
 
     pageGeneral pageGeneral = new pageGeneral();
-    requestAPI requestAPI = new requestAPI();
 
     @When("user click add button")
     public void user_click_add_button() {

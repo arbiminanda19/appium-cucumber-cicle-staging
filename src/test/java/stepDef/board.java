@@ -3,10 +3,12 @@ package stepDef;
 import com.github.javafaker.Faker;
 import config.env;
 import helper.accessFile;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import objects.pageBoard;
 import objects.pageGeneral;
+import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
@@ -68,6 +70,13 @@ public class board extends env {
     @When("user click confirm card name")
     public void user_click_confirm_card_name() {
         driver.findElement(pageBoard.getBtn_confirmCardName()).click();
+    }
+
+    @When("user check private card switch")
+    public void user_check_private_card_switch() {
+        driver.findElement(pageBoard.getBtn_switchPrivateCard()).click();
+        String switchStatus = driver.findElement(pageBoard.getBtn_switchPrivateCard()).getAttribute("checked");
+        Assert.assertEquals(switchStatus, "true");
     }
 
     @Then("user see card created")

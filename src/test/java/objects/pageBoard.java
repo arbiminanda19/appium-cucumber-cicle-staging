@@ -1,12 +1,8 @@
 package objects;
 
-import helper.accessFile;
 import org.openqa.selenium.By;
 
 public class pageBoard {
-
-    accessFile accessFile = new accessFile();
-    String file_cardName = "src/test/resources/data/cardName.txt";
 
     public By getBtn_dropdown() {
         By btn_dropdown = By.xpath("//android.widget.Button[@content-desc='Board']");
@@ -36,5 +32,10 @@ public class pageBoard {
     public By getTxt_boardName(String boardName) {
         By txt_boardName = By.xpath("//android.view.View[@content-desc='" + boardName + "']");
         return txt_boardName;
+    }
+
+    public By getBtn_switchPrivateCard() {
+        By btn_switchPrivateCard = By.xpath("//android.view.View[@content-desc='Private Card']/android.widget.Switch");
+        return btn_switchPrivateCard;
     }
 }
