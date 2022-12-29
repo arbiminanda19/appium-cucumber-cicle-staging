@@ -35,7 +35,7 @@ public class general extends env {
 
     @When("user click submit")
     public void user_click_submit() {
-
+        driver.findElement(pageGeneral.getBtn_submit()).click();
     }
 
 }

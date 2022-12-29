@@ -12,7 +12,10 @@ public class pageCompany {
     By btn_addTeam = By.xpath("//android.view.View[@content-desc='Add new team']");
 
     By container_team = By.xpath("//android.view.View[@content-desc='Team']");
-    By btn_certainTeam = By.xpath("//android.widget.Button[@content-desc=\"" + accessFile.readFromFile(file_teamName) + " description\"]");
+
+    By btn_certainTeam = By.xpath("//android.widget.Button[contains(@content-desc, '" + accessFile.readFromFile(file_teamName) + "')]");
+
+    By scroll_toCertainTeam = MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(descriptionContains(\"" + accessFile.readFromFile(file_teamName) + "\"))");
     By btn_team = By.xpath("//android.view.View[@content-desc='Team']/android.view.View/android.view.View/android.view.View");
 
 
@@ -30,5 +33,9 @@ public class pageCompany {
 
     public By getBtn_certainTeam() {
         return btn_certainTeam;
+    }
+
+    public By getScroll_toCertainTeam() {
+        return scroll_toCertainTeam;
     }
 }

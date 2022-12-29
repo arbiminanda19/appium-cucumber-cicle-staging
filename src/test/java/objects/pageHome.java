@@ -15,7 +15,7 @@ public class pageHome {
 
     By btn_company = By.xpath("//android.view.View[@content-desc=\"" + accessFile.readFromFile(file_companyName) + "\"]");
 
-    By scroll_toCompany = MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(descriptionContains(\"" + accessFile.readFromFile(file_companyName) + "\"))");
+    By scroll_toCompany = MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().descriptionContains(\"" + accessFile.readFromFile(file_companyName) + "\").instance(0))");
 
     public By getImg_logo() {
         return img_logo;

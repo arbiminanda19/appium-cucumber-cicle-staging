@@ -3,6 +3,7 @@ package stepDef;
 import config.env;
 import helper.accessFile;
 import helper.requestAPI;
+import helper.scroll;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -26,6 +27,7 @@ import static io.restassured.RestAssured.given;
 public class home extends env {
 
     pageHome pageHome = new pageHome();
+    scroll scroll = new scroll();
     pageGeneral pageGeneral = new pageGeneral();
     Random rand = new Random();
 
@@ -52,8 +54,8 @@ public class home extends env {
         );
         WebElement txt_companyName = driver.findElement(pageGeneral.getInput_Name());
         txt_companyName.click();
-        String companyName = requestAPI.getCompanyName();
-//        String companyName = "Company" + rand.nextInt(10000);
+//        String companyName = requestAPI.getCompanyName();
+        String companyName = "Company" + rand.nextInt(10000);
         txt_companyName.sendKeys(companyName);
         accessFile.writeToFile(file_companyName, companyName);
     }
@@ -67,7 +69,14 @@ public class home extends env {
 
     @When("user open certain company")
     public void user_open_certain_company() {
-        driver.findElement(pageHome.getScroll_toCompany());
+//        driver.findElement(pageHome.getScroll_toCompany());
+//        driver.findElement(pageHome.getBtn_company()).click();
+        Integer countElement = 0;
+        while (countElement == 0) {
+            driver.findElement(scroll.getScrollDown());
+            countElement = driver.findElements(pageHome.getBtn_company()).size();
+            System.out.println(countElement);
+        }
         driver.findElement(pageHome.getBtn_company()).click();
     }
 

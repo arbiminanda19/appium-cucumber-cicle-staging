@@ -1,8 +1,9 @@
-Feature: Company
+Feature: Team
 
-  Scenario: Create Team
+  Scenario: Create Board
     Given user is on home page
     When user open certain company
+    Then user is on company page
     And user open certain team
     Then user is on team page
     When user click board button

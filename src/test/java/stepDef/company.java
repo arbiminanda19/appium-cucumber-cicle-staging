@@ -38,7 +38,7 @@ public class company extends env {
     }
 
     @And("user input team name")
-    public void user_input_company_name() {
+    public void user_input_team_name() {
         String teamName = "Team" + rand.nextInt(10000);
         accessFile.writeToFile(file_teamName, teamName);
         wait.until(
@@ -58,7 +58,8 @@ public class company extends env {
 
     @When("user open certain team")
     public void user_open_certain_team() {
-
+        driver.findElement(pageCompany.getScroll_toCertainTeam());
+        driver.findElement(pageCompany.getBtn_certainTeam());
     }
 
 }
