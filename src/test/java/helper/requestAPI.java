@@ -6,7 +6,6 @@ import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 
 import java.util.List;
-import java.util.Random;
 
 import static io.restassured.RestAssured.given;
 
@@ -15,7 +14,6 @@ public class requestAPI {
     baseUrl baseUrl = new baseUrl();
     accessFile accessFile = new accessFile();
     String file_token = "src/test/resources/data/token.txt";
-    Random rand = new Random();
     String token = accessFile.readFromFile(file_token);
 
     public String getCompanyId() {
@@ -43,7 +41,7 @@ public class requestAPI {
 
         RestAssured.baseURI = baseUrl.getStagingCicle();
 
-        Response response = given()
+        given()
                 .when()
                 .header("Content-Type", "application/json")
                 .header("Authorization", token)

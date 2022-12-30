@@ -17,7 +17,7 @@ public class onBoard extends env {
         if (type.equals("Swipe")) {
             driver.findElement(pageOnBoard.getBtn_yes()).click();
             for (int i=0; i<=3; i++){
-                scroll.swipeHorizontal(driver, 0.9, 0.3, 0.1, 0.3);
+                scroll.swipeHorizontal(driver, 0.7, 0.3, 0.5, 0.5);
             }
         } else {
             driver.findElement(pageOnBoard.getBtn_skip()).click();

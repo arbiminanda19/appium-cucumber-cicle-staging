@@ -34,7 +34,7 @@ public class hooks extends env {
         wait = new WebDriverWait(driver, duration);
         String chosenLoginMethod = loginMethod.getLoginMethod();
         System.out.println(chosenLoginMethod);
-        onBoard.login(chosenLoginMethod);
+        onBoard.login("Swipe");
     }
 
     @After
