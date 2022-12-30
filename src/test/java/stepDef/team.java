@@ -6,11 +6,10 @@ import io.cucumber.java.en.When;
 import objects.pageTeam;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import java.util.Random;
-
 public class team extends env {
 
     pageTeam pageTeam = new pageTeam();
+
     @Then("user is on team page")
     public void user_is_on_team_page() {
         wait.until(

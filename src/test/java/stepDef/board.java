@@ -7,6 +7,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import objects.pageBoard;
 import objects.pageGeneral;
+import objects.pageTeam;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -15,12 +16,14 @@ public class board extends env {
 
     pageBoard pageBoard = new pageBoard();
     pageGeneral pageGeneral = new pageGeneral();
+    pageTeam pageTeam = new pageTeam();
+
     Faker faker = new Faker();
 
     accessFile accessFile = new accessFile();
     String file_boardName = "src/test/resources/data/boardName.txt";
     String file_cardName = "src/test/resources/data/cardName.txt";
-
+    String file_teamName = "src/test/resources/data/teamName.txt";
     String file_cardAmount = "src/test/resources/data/cardAmount.txt";
 
     Integer amountCardFiltered = 0;
@@ -30,6 +33,9 @@ public class board extends env {
         wait.until(
                 ExpectedConditions.visibilityOfElementLocated(pageBoard.getBtn_dropdown())
         );
+        if (driver.findElements(pageTeam.getTxt_recentlyViewed()).size() > 0) {
+            driver.findElement(pageTeam.getBtn_Team(accessFile.readFromFile(file_teamName))).click();
+        }
     }
 
     @When("user input board name")
@@ -89,6 +95,9 @@ public class board extends env {
 
     @When("user click filter button")
     public void user_click_filter_button() {
+        wait.until(
+                ExpectedConditions.visibilityOfElementLocated(pageBoard.getBtn_filter())
+        );
         driver.findElement(pageBoard.getBtn_filter()).click();
     }
     @When("user input card name for filter")

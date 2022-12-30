@@ -1,6 +1,6 @@
 Feature: Home
 
-  Scenario: Create Company
+  Scenario: TC1 - Create Company
     Given user is on home page
     When user click create company button
     And user input company name

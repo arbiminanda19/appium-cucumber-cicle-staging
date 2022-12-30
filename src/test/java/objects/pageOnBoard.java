@@ -23,4 +23,10 @@ public class pageOnBoard {
         By btn_account = By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.support.v7.widget.RecyclerView/android.widget.LinearLayout[1]");
         return btn_account;
     }
+
+    public By getBtn_yes() {
+        By btn_yes = By.xpath("//android.widget.Button[@content-desc='Yes!']");
+        return btn_yes;
+    }
+
 }

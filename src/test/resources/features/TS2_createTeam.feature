@@ -1,6 +1,6 @@
 Feature: Company
 
-  Scenario: Create Team
+  Scenario: TC2 - Create Team
     Given user is on home page
     When user open certain company
     Then user is on company page

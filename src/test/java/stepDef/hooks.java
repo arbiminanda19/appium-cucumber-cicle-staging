@@ -1,6 +1,7 @@
 package stepDef;
 
 import config.env;
+import helper.loginMethod;
 import io.appium.java_client.android.AndroidDriver;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -14,9 +15,10 @@ import java.util.concurrent.TimeUnit;
 public class hooks extends env {
 
     onBoard onBoard = new onBoard();
+    loginMethod loginMethod = new loginMethod();
 
     @Before
-    public void before() throws MalformedURLException {
+    public void before() throws MalformedURLException, InterruptedException {
         capabilities = new DesiredCapabilities();
         capabilities.setCapability("deviceName", "Pixel_3a_API_32_arm64-v8a");
         capabilities.setCapability("udid", "emulator-5554");
@@ -30,7 +32,9 @@ public class hooks extends env {
         driver = new AndroidDriver(url, capabilities);
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         wait = new WebDriverWait(driver, duration);
-        onBoard.login();
+        String chosenLoginMethod = loginMethod.getLoginMethod();
+        System.out.println(chosenLoginMethod);
+        onBoard.login(chosenLoginMethod);
     }
 
     @After

@@ -13,11 +13,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import java.nio.charset.Charset;
-import java.util.Random;
-
-import static io.restassured.RestAssured.given;
-
 public class home extends env {
 
     pageHome pageHome = new pageHome();
@@ -45,8 +40,7 @@ public class home extends env {
         );
         WebElement txt_companyName = driver.findElement(pageGeneral.getInput_Name());
         txt_companyName.click();
-        String companyPrefix = faker.company().suffix();
-        String companyName = companyPrefix + faker.number().numberBetween(11111, 99999);
+        String companyName = "Company" + faker.number().numberBetween(11111, 99999);
         txt_companyName.sendKeys(companyName);
         accessFile.writeToFile(file_companyName, companyName);
     }

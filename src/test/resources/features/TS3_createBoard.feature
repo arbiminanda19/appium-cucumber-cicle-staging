@@ -1,6 +1,6 @@
 Feature: Team
 
-  Scenario: Create Board
+  Scenario: TC3 - Create Board
     Given user is on home page
     When user open certain company
     Then user is on company page

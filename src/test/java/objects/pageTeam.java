@@ -17,4 +17,14 @@ public class pageTeam {
         By btn_board = By.xpath("//*[@content-desc='Board']");
         return btn_board;
     }
+
+    public By getTxt_recentlyViewed() {
+        By txt_recentlyViewed = By.xpath("//*[contains(@content-desc, 'Recently Viewed')]");
+        return txt_recentlyViewed;
+    }
+
+    public By getBtn_Team(String teamName) {
+        By btn_certainTeam = By.xpath("//android.view.View[contains(@content-desc, '" + teamName + "')]");
+        return btn_certainTeam;
+    }
 }
