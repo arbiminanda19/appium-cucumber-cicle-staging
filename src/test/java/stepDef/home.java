@@ -31,12 +31,14 @@ public class home extends env {
 
     @When("user verify new user notification")
     public void new_user_verification() {
-        Boolean check_notif = driver.findElements(pageHome.getBtn_xNewUser()).size() > 0;
+        String pageSource = (driver.getPageSource());
+        Boolean check_notif = (pageSource.contains("you have not joined any company") || pageSource.contains("don't own or join a company"));
         while (check_notif){
-            if (driver.findElements(pageHome.getBtn_xNewUser()).size() > 0) {
+            if (pageSource.contains("you have not joined any company") || pageSource.contains("don't own or join a company")) {
                 driver.findElement(pageHome.getBtn_xNewUser()).click();
             }
-            check_notif = driver.findElements(pageHome.getBtn_xNewUser()).size() > 0;
+            pageSource = (driver.getPageSource());
+            check_notif = (pageSource.contains("you have not joined any company") || pageSource.contains("don't own or join a company"));
         }
     }
 
