@@ -38,7 +38,8 @@ public class board extends env {
         wait.until(
                 ExpectedConditions.visibilityOfElementLocated(pageBoard.getBtn_dropdown())
         );
-        if (driver.findElements(pageTeam.getTxt_recentlyViewed()).size() > 0) {
+        String pageSource = driver.getPageSource();
+        if (pageSource.contains("Recently Viewed")) {
             driver.findElement(pageTeam.getBtn_Team(accessFile.readFromFile(file_teamName))).click();
         }
     }
@@ -149,9 +150,6 @@ public class board extends env {
     @When("user change board order")
     public void change_board_order() throws InterruptedException {
         drag.dragByElement(driver, pageBoard.getTxt_boardNameGeneral(2), pageBoard.getTxt_boardNameGeneral(1));
-        System.out.println(pageBoard.getTxt_boardNameGeneral(2));
-        System.out.println(pageBoard.getTxt_boardNameGeneral(1));
-//        drag.dragByCoordinat(driver, 0.7, 0.2, 0.2, 0.2);
     }
 
 }
