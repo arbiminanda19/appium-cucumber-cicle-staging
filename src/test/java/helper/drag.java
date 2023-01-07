@@ -19,10 +19,9 @@ public class drag {
     public void dragByElement(AppiumDriver driver, By startElement, By endElement) throws InterruptedException {
         TouchAction dragNDrop = new TouchAction(driver);
         WebElement start = driver.findElement(startElement);
-        dragNDrop.press(element(start))
+        dragNDrop.longPress(element(start))
                 .waitAction(WaitOptions.waitOptions(Duration.ofMillis(2000)))
-                .perform();
-        dragNDrop.moveTo(element(driver.findElement(endElement)))
+                .moveTo(element(driver.findElement(endElement)))
                 .release().perform();
     }
 

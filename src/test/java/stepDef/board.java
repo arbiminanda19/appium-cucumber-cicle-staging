@@ -38,10 +38,6 @@ public class board extends env {
         wait.until(
                 ExpectedConditions.visibilityOfElementLocated(pageBoard.getBtn_dropdown())
         );
-        String pageSource = driver.getPageSource();
-        if (pageSource.contains("Recently Viewed")) {
-            driver.findElement(pageTeam.getBtn_Team(accessFile.readFromFile(file_teamName))).click();
-        }
     }
 
     @When("user input board name")

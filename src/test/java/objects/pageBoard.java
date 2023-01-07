@@ -45,7 +45,7 @@ public class pageBoard {
     }
 
     public By getBtn_filter() {
-        By btn_filter = By.xpath("//*/android.view.View[1]/android.view.View[2]");
+        By btn_filter = By.xpath("//*/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.view.View[2]");
         return btn_filter;
     }
 
@@ -64,8 +64,8 @@ public class pageBoard {
         return toast_reorderBoard;
     }
 
-    public By getLongClickable_Board(Integer boardOrder) {
-        By longClickable_Board = By.xpath("//*/android.view.View[2]/android.view.View/android.view.View/android.view.View/android.view.View["+ boardOrder +"]");
-        return longClickable_Board;
+    public By getBtn_boardOnSearch() {
+        By btn_boardOnSearch = By.xpath("//android.view.View[contains(@content-desc, 'Board')]");
+        return btn_boardOnSearch;
     }
 }
