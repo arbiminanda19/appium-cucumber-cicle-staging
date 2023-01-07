@@ -33,8 +33,7 @@ public class hooks extends env {
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         wait = new WebDriverWait(driver, duration);
         String chosenLoginMethod = loginMethod.getLoginMethod();
-        System.out.println(chosenLoginMethod);
-        onBoard.login("Swipe");
+        onBoard.login(chosenLoginMethod);
     }
 
     @After

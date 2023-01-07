@@ -1,6 +1,6 @@
 Feature: Board
 
-  Scenario: TC4 - Create Card, TC5 - Private Card
+  Scenario: TC5 - Create Card, TC6 - Private Card
     Given user is on home page
     When user open certain company
     Then user is on company page

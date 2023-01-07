@@ -29,6 +29,17 @@ public class home extends env {
         );
     }
 
+    @When("user verify new user notification")
+    public void new_user_verification() {
+        Boolean check_notif = driver.findElements(pageHome.getBtn_xNewUser()).size() > 0;
+        while (check_notif){
+            if (driver.findElements(pageHome.getBtn_xNewUser()).size() > 0) {
+                driver.findElement(pageHome.getBtn_xNewUser()).click();
+            }
+            check_notif = driver.findElements(pageHome.getBtn_xNewUser()).size() > 0;
+        }
+    }
+
     @When("user click create company button")
     public void user_click_create_company_button() {
         driver.findElement(pageHome.getBtn_createCompany()).click();

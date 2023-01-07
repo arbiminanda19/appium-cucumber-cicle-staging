@@ -33,4 +33,9 @@ public class pageHome {
         By scroll_toCompany = MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().descriptionContains(\"" + accessFile.readFromFile(file_companyName) + "\").instance(0))");
         return scroll_toCompany;
     }
+
+    public By getBtn_xNewUser() {
+        By btn_xNewUser = By.xpath("//*/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View[2]/android.widget.Button");
+        return btn_xNewUser;
+    }
 }

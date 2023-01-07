@@ -1,6 +1,6 @@
 Feature: Filter
 
-  Scenario: TC6 - Filter Card, TC7 - Reset Filter
+  Scenario: TC7 - Filter Card, TC8 - Reset Filter
     Given user is on home page
     When user open certain company
     Then user is on company page

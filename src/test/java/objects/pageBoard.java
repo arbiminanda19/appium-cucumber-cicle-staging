@@ -53,4 +53,19 @@ public class pageBoard {
         By input_filterCardName = By.xpath("//*/android.view.View/android.view.View/android.widget.EditText[1]");
         return input_filterCardName;
     }
+
+    public By getTxt_boardNameGeneral(Integer boardOrder) {
+        By txt_boardNameGeneral = By.xpath("//*/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.view.View/android.view.View/android.view.View[" + boardOrder + "]/android.view.View");
+        return txt_boardNameGeneral;
+    }
+
+    public By getToast_reorderBoard() {
+        By toast_reorderBoard = By.xpath("//android.view.View[@content-desc='Reorder list is success']");
+        return toast_reorderBoard;
+    }
+
+    public By getLongClickable_Board(Integer boardOrder) {
+        By longClickable_Board = By.xpath("//*/android.view.View[2]/android.view.View/android.view.View/android.view.View/android.view.View["+ boardOrder +"]");
+        return longClickable_Board;
+    }
 }
