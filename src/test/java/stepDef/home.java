@@ -32,13 +32,13 @@ public class home extends env {
     @When("user verify new user notification")
     public void new_user_verification() {
         String pageSource = (driver.getPageSource());
-        Boolean check_notif = (pageSource.contains("you have not joined any company") || pageSource.contains("don't own or join a company"));
+        Boolean check_notif = (pageSource.contains("not joined any company") || pageSource.contains("don't own or join a company"));
         while (check_notif){
-            if (pageSource.contains("you have not joined any company") || pageSource.contains("don't own or join a company")) {
+            if (pageSource.contains("not joined any company") || pageSource.contains("don't own or join a company")) {
                 driver.findElement(pageHome.getBtn_xNewUser()).click();
             }
             pageSource = (driver.getPageSource());
-            check_notif = (pageSource.contains("you have not joined any company") || pageSource.contains("don't own or join a company"));
+            check_notif = (pageSource.contains("not joined any company") || pageSource.contains("don't own or join a company"));
         }
     }
 
