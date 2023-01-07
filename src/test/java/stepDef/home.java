@@ -75,4 +75,11 @@ public class home extends env {
         driver.findElement(btn_certainCompany).click();
     }
 
+    @Then("user see error message")
+    public void user_see_error_message() {
+        wait.until(
+                ExpectedConditions.visibilityOfElementLocated(pageHome.getToast_errorNameandDescNull())
+        );
+    }
+
 }
