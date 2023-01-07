@@ -38,4 +38,9 @@ public class pageHome {
         By btn_xNewUser = By.xpath("//*/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View[2]/android.widget.Button");
         return btn_xNewUser;
     }
+
+    public By getToast_errorNameandDescNull() {
+        By toast_errorNameandDescNull = By.xpath("//android.view.View[@content-desc='Name and description fields must be filled']");
+        return toast_errorNameandDescNull;
+    }
 }
