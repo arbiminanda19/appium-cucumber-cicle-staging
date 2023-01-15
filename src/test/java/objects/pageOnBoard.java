@@ -20,7 +20,7 @@ public class pageOnBoard {
     }
 
     public By getBtn_account() {
-        By btn_account = By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.support.v7.widget.RecyclerView/android.widget.LinearLayout[1]");
+        By btn_account = By.xpath("//android.widget.TextView[@resource-id='com.google.android.gms:id/account_display_name']/parent::android.widget.LinearLayout/parent::android.widget.LinearLayout");
         return btn_account;
     }
 

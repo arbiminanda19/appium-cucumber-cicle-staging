@@ -25,6 +25,7 @@ public class board extends env {
     accessFile accessFile = new accessFile();
     String file_boardName = "src/test/resources/data/boardName.txt";
     String file_cardName = "src/test/resources/data/cardName.txt";
+    String file_privateCardName = "src/test/resources/data/privateCardName.txt";
     String file_teamName = "src/test/resources/data/teamName.txt";
     String file_cardAmount = "src/test/resources/data/cardAmount.txt";
 
@@ -76,6 +77,18 @@ public class board extends env {
         txt_cardName.sendKeys(cardName);
     }
 
+    @When("user input private card name")
+    public void user_input_private_card_name() {
+        String cardName = "Card" + faker.number().numberBetween(11111, 99999);
+        accessFile.writeToFile(file_privateCardName, cardName);
+        wait.until(
+                ExpectedConditions.visibilityOfElementLocated(pageBoard.getInput_cardName())
+        );
+        WebElement txt_cardName = driver.findElement(pageBoard.getInput_cardName());
+        txt_cardName.click();
+        txt_cardName.sendKeys(cardName);
+    }
+
     @When("user click confirm card name")
     public void user_click_confirm_card_name() {
         driver.findElement(pageBoard.getBtn_confirmCardName()).click();
@@ -116,12 +129,20 @@ public class board extends env {
         );
         amountCardFiltered = driver.findElements(pageBoard.getBox_cardContainer()).size();
         accessFile.writeToFile(file_cardAmount, String.valueOf(amountCardFiltered));
+        String privateCardName = accessFile.readFromFile(file_privateCardName);
+        String pageSource = (driver.getPageSource());
+        Assert.assertFalse(pageSource.contains(privateCardName));
     }
 
     @Then("user see all cards")
     public void user_see_all_cards() {
         amountCardFiltered = driver.findElements(pageBoard.getBox_cardContainer()).size();
         Assert.assertTrue(Integer.valueOf(accessFile.readFromFile(file_cardAmount)) < amountCardFiltered);
+        String cardName = accessFile.readFromFile(file_cardName);
+        String privateCardName = accessFile.readFromFile(file_privateCardName);
+        String pageSource = (driver.getPageSource());
+        pageSource.contains(privateCardName);
+        pageSource.contains(cardName);
     }
 
     @When("user get order existing board")

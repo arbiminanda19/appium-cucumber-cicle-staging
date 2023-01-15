@@ -1,8 +1,10 @@
 package stepDef;
 
 import com.github.javafaker.Faker;
+import com.mysql.cj.jdbc.JdbcConnection;
 import config.env;
 import helper.accessFile;
+import helper.dbConnection;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -13,10 +15,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import java.sql.SQLException;
+
 public class home extends env {
 
     pageHome pageHome = new pageHome();
     pageGeneral pageGeneral = new pageGeneral();
+
+    dbConnection dbConnection = new dbConnection();
 
     accessFile accessFile = new accessFile();
     Faker faker = new Faker();
@@ -47,13 +53,14 @@ public class home extends env {
         driver.findElement(pageHome.getBtn_createCompany()).click();
     }
     @And("user input company name")
-    public void user_input_company_name() {
+    public void user_input_company_name() throws SQLException {
         wait.until(
                 ExpectedConditions.visibilityOfElementLocated(pageGeneral.getInput_Name())
         );
         WebElement txt_companyName = driver.findElement(pageGeneral.getInput_Name());
         txt_companyName.click();
         String companyName = "Company" + faker.number().numberBetween(11111, 99999);
+//        String companyName = dbConnection.getCompanyName();
         txt_companyName.sendKeys(companyName);
         accessFile.writeToFile(file_companyName, companyName);
     }

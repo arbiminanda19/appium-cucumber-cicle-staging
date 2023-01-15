@@ -13,7 +13,7 @@ Feature: Board
     And user click confirm card name
     Then user see card created
     When user click add new card
-    And user input card name
+    And user input private card name
     And user check private card switch
     And user click confirm card name
     Then user see card created
