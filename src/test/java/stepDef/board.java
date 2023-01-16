@@ -8,16 +8,18 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import objects.pageBoard;
 import objects.pageGeneral;
-import objects.pageTeam;
+import objects.pageFileManager;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import java.util.Set;
 
 public class board extends env {
 
     pageBoard pageBoard = new pageBoard();
     pageGeneral pageGeneral = new pageGeneral();
-    pageTeam pageTeam = new pageTeam();
+    pageFileManager pageFileManager = new pageFileManager();
 
     Faker faker = new Faker();
     drag drag = new drag();
@@ -167,6 +169,43 @@ public class board extends env {
     @When("user change board order")
     public void change_board_order() throws InterruptedException {
         drag.dragByElement(driver, pageBoard.getTxt_boardNameGeneral(2), pageBoard.getTxt_boardNameGeneral(1));
+    }
+
+    @When("user click certain card")
+    public void click_certain_card() {
+        driver.findElement(pageBoard.getBtn_certainCard()).click();
+    }
+
+    @When("user click attach file")
+    public void click_attach_file() {
+        wait.until(
+                ExpectedConditions.visibilityOfElementLocated(pageBoard.getBtn_attachFile())
+        );
+        driver.findElement(pageBoard.getBtn_attachFile()).click();
+    }
+
+    @When("user upload file")
+    public void upload_file() {
+        //Switch to Native_App
+        Set<String> contextNames = driver.getContextHandles();
+        for (String strContextName : contextNames) {
+            if (strContextName.contains("NATIVE_APP")) {
+                driver.context("NATIVE_APP");
+                break;
+            }
+        }
+        wait.until(
+                ExpectedConditions.visibilityOfElementLocated(pageFileManager.getBtn_image())
+        );
+        driver.findElement(pageFileManager.getBtn_image()).click();
+        driver.findElement(pageFileManager.getBtn_cardImage()).click();
+    }
+
+    @Then("user see attachment uploaded")
+    public void see_attachment_success() {
+        wait.until(
+                ExpectedConditions.visibilityOfElementLocated(pageBoard.getToast_attachFileSuccess())
+        );
     }
 
 }

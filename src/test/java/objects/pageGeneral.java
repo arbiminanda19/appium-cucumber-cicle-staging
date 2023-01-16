@@ -38,4 +38,9 @@ public class pageGeneral {
         By btn_reset = By.xpath("//android.widget.Button[@content-desc='reset']");
         return btn_reset;
     }
+
+    public By getBtn_allow() {
+        By btn_allow = By.xpath("//android.widget.Button[@resource-id='com.android.permissioncontroller:id/permission_allow_button']");
+        return btn_allow;
+    }
 }

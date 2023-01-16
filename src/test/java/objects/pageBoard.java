@@ -1,8 +1,12 @@
 package objects;
 
+import helper.accessFile;
 import org.openqa.selenium.By;
 
 public class pageBoard {
+
+    accessFile accessFile = new accessFile();
+    String file_cardName = "src/test/resources/data/cardName.txt";
 
     public By getBtn_dropdown() {
         By btn_dropdown = By.xpath("//android.widget.Button[@content-desc='Board']");
@@ -67,5 +71,20 @@ public class pageBoard {
     public By getBtn_boardOnSearch() {
         By btn_boardOnSearch = By.xpath("//android.view.View[contains(@content-desc, 'Board')]");
         return btn_boardOnSearch;
+    }
+
+    public By getBtn_certainCard() {
+        By btn_certainCard = By.xpath("//android.widget.Button[contains(@content-desc,'" + accessFile.readFromFile(file_cardName) + "')]");
+        return btn_certainCard;
+    }
+
+    public By getBtn_attachFile() {
+        By btn_attachFile = By.xpath("//android.widget.Button[@content-desc='Attach file']");
+        return btn_attachFile;
+    }
+
+    public By getToast_attachFileSuccess() {
+        By toast_attachFileSuccess = By.xpath("//android.view.View[@content-desc='Upload attachments is success']");
+        return toast_attachFileSuccess;
     }
 }

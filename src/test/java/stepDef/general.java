@@ -41,4 +41,9 @@ public class general extends env {
         driver.findElement(pageGeneral.getBtn_reset()).click();
     }
 
+    @When("user click allow")
+    public void user_click_allow() {
+        driver.findElement(pageGeneral.getBtn_allow()).click();
+    }
+
 }
