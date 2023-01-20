@@ -3,6 +3,7 @@ package stepDef;
 import com.github.javafaker.Faker;
 import config.env;
 import helper.accessFile;
+import helper.click;
 import helper.drag;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -13,6 +14,8 @@ import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Set;
 
 public class board extends env {
@@ -22,6 +25,7 @@ public class board extends env {
     pageFileManager pageFileManager = new pageFileManager();
 
     Faker faker = new Faker();
+    click click = new click();
     drag drag = new drag();
 
     accessFile accessFile = new accessFile();
@@ -177,7 +181,8 @@ public class board extends env {
     }
 
     @When("user click attach file")
-    public void click_attach_file() {
+    public void click_attach_file() throws IOException {
+        driver.pushFile("/sdcard/attachments.png", new File("/Users/flp-9-muhammadminanda/attachments.png"));
         wait.until(
                 ExpectedConditions.visibilityOfElementLocated(pageBoard.getBtn_attachFile())
         );
@@ -186,7 +191,6 @@ public class board extends env {
 
     @When("user upload file")
     public void upload_file() {
-        //Switch to Native_App
         Set<String> contextNames = driver.getContextHandles();
         for (String strContextName : contextNames) {
             if (strContextName.contains("NATIVE_APP")) {
@@ -194,11 +198,29 @@ public class board extends env {
                 break;
             }
         }
-        wait.until(
-                ExpectedConditions.visibilityOfElementLocated(pageFileManager.getBtn_image())
-        );
-        driver.findElement(pageFileManager.getBtn_image()).click();
-        driver.findElement(pageFileManager.getBtn_cardImage()).click();
+        String fileSource = "drive";
+        if (fileSource.equals("local")) {
+            driver.findElement(pageFileManager.getBtn_image()).click();
+            driver.findElement(pageFileManager.getBtn_cardImage()).click();
+        }
+        else if (fileSource.equals("drive")) {
+            wait.until(
+                    ExpectedConditions.visibilityOfElementLocated(pageFileManager.getBtn_sideBar())
+            );
+            driver.findElement(pageFileManager.getBtn_sideBar()).click();
+            wait.until(
+                    ExpectedConditions.visibilityOfElementLocated(pageFileManager.getBtn_drive())
+            );
+            driver.findElement(pageFileManager.getBtn_drive()).click();
+            wait.until(
+                    ExpectedConditions.visibilityOfElementLocated(pageFileManager.getBtn_myDrive())
+            );
+            driver.findElement(pageFileManager.getBtn_myDrive()).click();
+            wait.until(
+                    ExpectedConditions.visibilityOfElementLocated(pageFileManager.getBtn_cardImageDrive())
+            );
+            driver.findElement(pageFileManager.getBtn_cardImageDrive()).click();
+        }
     }
 
     @Then("user see attachment uploaded")

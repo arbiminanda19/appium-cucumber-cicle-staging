@@ -8,6 +8,10 @@ import io.cucumber.java.Before;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
@@ -18,7 +22,7 @@ public class hooks extends env {
     loginMethod loginMethod = new loginMethod();
 
     @Before
-    public void before() throws MalformedURLException, InterruptedException {
+    public void before() throws IOException, InterruptedException {
         capabilities = new DesiredCapabilities();
         capabilities.setCapability("deviceName", "Pixel_3a_API_32_arm64-v8a");
         capabilities.setCapability("udid", "emulator-5554");
