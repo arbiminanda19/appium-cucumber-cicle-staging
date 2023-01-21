@@ -191,7 +191,6 @@ public class board extends env {
     public void upload_file() throws IOException {
         String fileSource = "local";
         if (fileSource.equals("local")) {
-//            driver.pushFile("/sdcard/attachments.png", new File("/Users/flp-9-muhammadminanda/attachments.png"));
             driver.pushFile("/sdcard/attachments.png", new File(System.getProperty("user.dir") + "/src/test/resources/files/attachments.png"));
             wait.until(
                     ExpectedConditions.visibilityOfElementLocated(pageFileManager.getBtn_sideBar())
