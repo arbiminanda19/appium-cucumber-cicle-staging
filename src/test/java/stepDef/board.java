@@ -182,28 +182,33 @@ public class board extends env {
 
     @When("user click attach file")
     public void click_attach_file() throws IOException {
-        driver.pushFile("/sdcard/attachments.png", new File("/Users/flp-9-muhammadminanda/attachments.png"));
-        wait.until(
-                ExpectedConditions.visibilityOfElementLocated(pageBoard.getBtn_attachFile())
-        );
-        driver.findElement(pageBoard.getBtn_attachFile()).click();
+        String pageSource = driver.getPageSource();
+        if (pageSource.contains("Attach file")) {
+            driver.findElement(pageBoard.getBtn_attachFile()).click();
+        } else {
+            driver.findElement(pageBoard.getBtn_attachFileIcon()).click();
+        }
     }
 
     @When("user upload file")
-    public void upload_file() {
-        Set<String> contextNames = driver.getContextHandles();
-        for (String strContextName : contextNames) {
-            if (strContextName.contains("NATIVE_APP")) {
-                driver.context("NATIVE_APP");
-                break;
-            }
-        }
-        String fileSource = "drive";
+    public void upload_file() throws IOException {
+        String fileSource = "local";
         if (fileSource.equals("local")) {
-            driver.findElement(pageFileManager.getBtn_image()).click();
-            driver.findElement(pageFileManager.getBtn_cardImage()).click();
-        }
-        else if (fileSource.equals("drive")) {
+            driver.pushFile("/sdcard/attachments.png", new File("/Users/flp-9-muhammadminanda/attachments.png"));
+            wait.until(
+                    ExpectedConditions.visibilityOfElementLocated(pageFileManager.getBtn_sideBar())
+            );
+            driver.findElement(pageFileManager.getBtn_sideBar()).click();
+            wait.until(
+                    ExpectedConditions.visibilityOfElementLocated(pageFileManager.getBtn_optionSideBar())
+            );
+            Integer sideBarAmount = driver.findElements(pageFileManager.getBtn_optionSideBar()).size();
+            driver.findElement(pageFileManager.getBtn_sdcard(sideBarAmount)).click();
+            wait.until(
+                    ExpectedConditions.visibilityOfElementLocated(pageFileManager.getBtn_fileSdCard())
+            );
+            driver.findElement(pageFileManager.getBtn_fileSdCard()).click();
+        } else {
             wait.until(
                     ExpectedConditions.visibilityOfElementLocated(pageFileManager.getBtn_sideBar())
             );
@@ -213,13 +218,13 @@ public class board extends env {
             );
             driver.findElement(pageFileManager.getBtn_drive()).click();
             wait.until(
-                    ExpectedConditions.visibilityOfElementLocated(pageFileManager.getBtn_myDrive())
+                    ExpectedConditions.visibilityOfElementLocated(pageFileManager.getBtn_fileDrive())
             );
-            driver.findElement(pageFileManager.getBtn_myDrive()).click();
+            driver.findElement(pageFileManager.getBtn_fileDrive()).click();
             wait.until(
-                    ExpectedConditions.visibilityOfElementLocated(pageFileManager.getBtn_cardImageDrive())
+                    ExpectedConditions.visibilityOfElementLocated(pageFileManager.getBtn_fileDrive())
             );
-            driver.findElement(pageFileManager.getBtn_cardImageDrive()).click();
+            driver.findElement(pageFileManager.getBtn_fileDrive()).click();
         }
     }
 

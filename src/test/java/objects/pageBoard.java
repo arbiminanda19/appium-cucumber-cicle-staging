@@ -74,13 +74,19 @@ public class pageBoard {
     }
 
     public By getBtn_certainCard() {
-        By btn_certainCard = By.xpath("//android.widget.Button[contains(@content-desc,'" + accessFile.readFromFile(file_cardName) + "')]");
+        By btn_certainCard = By.xpath("//android.widget.Button[contains(@content-desc,'"+ accessFile.readFromFile(file_cardName) +"')]");
         return btn_certainCard;
     }
 
     public By getBtn_attachFile() {
         By btn_attachFile = By.xpath("//android.widget.Button[@content-desc='Attach file']");
         return btn_attachFile;
+    }
+
+    By btn_attachFileIcon = By.xpath("//android.view.View[@content-desc='" + accessFile.readFromFile(file_cardName) + "'][1]/android.view.View[2]/android.view.View/android.view.View/android.view.View[5]");
+
+    public By getBtn_attachFileIcon() {
+        return btn_attachFileIcon;
     }
 
     public By getToast_attachFileSuccess() {

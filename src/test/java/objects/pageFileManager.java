@@ -5,37 +5,40 @@ import org.openqa.selenium.By;
 
 public class pageFileManager {
 
-    public By getBtn_image() {
-        By btn_image = By.xpath("//*/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.CompoundButton[1]");
-        return btn_image;
-    }
-
-    public By getBtn_cardImage() {
-        By btn_cardImage = By.xpath("//*/android.widget.FrameLayout[2]/android.widget.LinearLayout[1]/android.view.ViewGroup[1]/androidx.recyclerview.widget.RecyclerView[1]/androidx.cardview.widget.CardView[1]");
-        return btn_cardImage;
-    }
-
-    By btn_sideBar = By.xpath("//*[@class = 'android.widget.ImageButton' and (@text = '' or . = '')]");
-
-    By btn_drive = By.xpath("//*[@class = 'android.widget.TextView' and (@text = 'arbiminanda49@gmail.com' or . = 'arbiminanda49@gmail.com') and @resource-id = 'android:id/summary']/parent::android.widget.LinearLayout/parent::android.widget.LinearLayout");
-
-    By btn_myDrive = By.xpath("//*[@class = 'android.widget.TextView' and (@text = 'My Drive' or . = 'My Drive') and @resource-id = 'android:id/title']/parent::android.widget.LinearLayout/parent::androidx.cardview.widget.CardView/parent::androidx.cardview.widget.CardView");
-
-    By btn_cardImageDrive = By.xpath("//*[@class = 'androidx.cardview.widget.CardView' and @resource-id = 'com.google.android.documentsui:id/item_root' and (@text = '' or . = '')]");
-
     public By getBtn_sideBar() {
+        By btn_sideBar = By.xpath("//android.widget.ImageButton[@content-desc='Show roots']");
         return btn_sideBar;
     }
 
     public By getBtn_drive() {
+        By btn_drive = By.xpath("//android.widget.FrameLayout[@content-desc='Open Drive']/parent::android.widget.LinearLayout");
         return btn_drive;
     }
 
-    public By getBtn_myDrive() {
-        return btn_myDrive;
+    public By getBtn_fileDrive() {
+        By btn_fileDrive = By.xpath("//*[@resource-id='com.google.android.documentsui:id/item_root']");
+        return btn_fileDrive;
     }
 
     public By getBtn_cardImageDrive() {
+        By btn_cardImageDrive = By.xpath("//*[@resource-id='com.google.android.apps.docs:id/document_layout']");
         return btn_cardImageDrive;
+    }
+
+    By btn_optionSideBar = By.xpath("//android.widget.FrameLayout[@content-desc='Open Drive']/parent::android.widget.LinearLayout/preceding-sibling::android.widget.LinearLayout");
+
+    public By getBtn_optionSideBar() {
+        return btn_optionSideBar;
+    }
+
+    public By getBtn_sdcard(Integer index) {
+        By btn_sdcard = By.xpath("//android.widget.FrameLayout[@content-desc='Open Drive']/parent::android.widget.LinearLayout/preceding-sibling::android.widget.LinearLayout[" + index + "]");
+        return btn_sdcard;
+    }
+
+    By btn_fileSdCard = By.xpath("//*[contains(@content-desc, 'attachment')]/parent::android.widget.RelativeLayout/parent::androidx.cardview.widget.CardView/parent::androidx.cardview.widget.CardView");
+
+    public By getBtn_fileSdCard() {
+        return btn_fileSdCard;
     }
 }
