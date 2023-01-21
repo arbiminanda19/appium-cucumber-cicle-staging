@@ -7,8 +7,10 @@ public class runAPI {
 
     static requestAPI requestAPI = new requestAPI();
     public static void main(String[] args) {
-        String companyId = requestAPI.getCompanyId();
-        requestAPI.deleteCompany(companyId);
+        for (int i =0; i < 20; i++) {
+            String companyId = requestAPI.getCompanyId();
+            requestAPI.deleteCompany(companyId);
+        }
     }
 
 }
