@@ -43,4 +43,10 @@ public class pageGeneral {
         By btn_allow = By.xpath("//android.widget.Button[@resource-id='com.android.permissioncontroller:id/permission_allow_button']");
         return btn_allow;
     }
+
+    By btn_publish = By.xpath("//android.widget.Button[@content-desc='Publish']");
+
+    public By getBtn_publish() {
+        return btn_publish;
+    }
 }

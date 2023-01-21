@@ -8,11 +8,7 @@ import io.cucumber.java.Before;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
@@ -28,9 +24,9 @@ public class hooks extends env {
         capabilities.setCapability("udid", "emulator-5554");
         capabilities.setCapability("platformName", "Android");
         capabilities.setCapability("platformVersion", "12");
-//        capabilities.setCapability("app", "src/test/resources/app/cicle-staging.apk");
         capabilities.setCapability("appPackage", "staging.cicle");
         capabilities.setCapability("appActivity", "staging.cicle.MainActivity");
+        //capabilities.setCapability("app", "src/test/resources/app/cicle-staging.apk");
 
         URL url = new URL(baseUrl);
         driver = new AndroidDriver(url, capabilities);

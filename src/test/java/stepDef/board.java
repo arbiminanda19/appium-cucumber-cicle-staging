@@ -16,7 +16,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Set;
 
 public class board extends env {
 
@@ -32,7 +31,6 @@ public class board extends env {
     String file_boardName = "src/test/resources/data/boardName.txt";
     String file_cardName = "src/test/resources/data/cardName.txt";
     String file_privateCardName = "src/test/resources/data/privateCardName.txt";
-    String file_teamName = "src/test/resources/data/teamName.txt";
     String file_cardAmount = "src/test/resources/data/cardAmount.txt";
 
     String file_firstBoardName = "src/test/resources/data/firstBoardName.txt";
@@ -181,9 +179,8 @@ public class board extends env {
     }
 
     @When("user click attach file")
-    public void click_attach_file() throws IOException {
-        String pageSource = driver.getPageSource();
-        if (pageSource.contains("Attach file")) {
+    public void click_attach_file() {
+        if (driver.findElements(pageBoard.getBtn_attachFile()).size() > 0) {
             driver.findElement(pageBoard.getBtn_attachFile()).click();
         } else {
             driver.findElement(pageBoard.getBtn_attachFileIcon()).click();
@@ -194,7 +191,8 @@ public class board extends env {
     public void upload_file() throws IOException {
         String fileSource = "local";
         if (fileSource.equals("local")) {
-            driver.pushFile("/sdcard/attachments.png", new File("/Users/flp-9-muhammadminanda/attachments.png"));
+//            driver.pushFile("/sdcard/attachments.png", new File("/Users/flp-9-muhammadminanda/attachments.png"));
+            driver.pushFile("/sdcard/attachments.png", new File(System.getProperty("user.dir") + "/src/test/resources/files/attachments.png"));
             wait.until(
                     ExpectedConditions.visibilityOfElementLocated(pageFileManager.getBtn_sideBar())
             );

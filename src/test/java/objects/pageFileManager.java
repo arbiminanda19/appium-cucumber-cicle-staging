@@ -1,6 +1,5 @@
 package objects;
 
-import helper.accessFile;
 import org.openqa.selenium.By;
 
 public class pageFileManager {
@@ -25,9 +24,8 @@ public class pageFileManager {
         return btn_cardImageDrive;
     }
 
-    By btn_optionSideBar = By.xpath("//android.widget.FrameLayout[@content-desc='Open Drive']/parent::android.widget.LinearLayout/preceding-sibling::android.widget.LinearLayout");
-
     public By getBtn_optionSideBar() {
+        By btn_optionSideBar = By.xpath("//android.widget.FrameLayout[@content-desc='Open Drive']/parent::android.widget.LinearLayout/preceding-sibling::android.widget.LinearLayout");
         return btn_optionSideBar;
     }
 
@@ -36,9 +34,8 @@ public class pageFileManager {
         return btn_sdcard;
     }
 
-    By btn_fileSdCard = By.xpath("//*[contains(@content-desc, 'attachment')]/parent::android.widget.RelativeLayout/parent::androidx.cardview.widget.CardView/parent::androidx.cardview.widget.CardView");
-
     public By getBtn_fileSdCard() {
+        By btn_fileSdCard = By.xpath("//*[contains(@content-desc, 'attachment')]/parent::android.widget.RelativeLayout/parent::androidx.cardview.widget.CardView/parent::androidx.cardview.widget.CardView");
         return btn_fileSdCard;
     }
 }

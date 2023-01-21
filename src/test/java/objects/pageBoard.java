@@ -83,14 +83,28 @@ public class pageBoard {
         return btn_attachFile;
     }
 
-    By btn_attachFileIcon = By.xpath("//android.view.View[@content-desc='" + accessFile.readFromFile(file_cardName) + "'][1]/android.view.View[2]/android.view.View/android.view.View/android.view.View[5]");
-
     public By getBtn_attachFileIcon() {
+        By btn_attachFileIcon = By.xpath("//android.view.View[@content-desc='" + accessFile.readFromFile(file_cardName) + "'][1]/android.view.View[2]/android.view.View/android.view.View/android.view.View[5]");
         return btn_attachFileIcon;
+    }
+
+    public By getBtn_descriptionIcon() {
+        By btn_descriptionIcon = By.xpath("//android.view.View[@content-desc='" + accessFile.readFromFile(file_cardName) + "'][1]/android.view.View[2]/android.view.View/android.view.View/android.view.View[4]");
+        return btn_descriptionIcon;
+    }
+
+    public By getInput_editText() {
+        By input_editText = By.xpath("//*/android.widget.FrameLayout/descendant::android.widget.EditText");
+        return input_editText;
     }
 
     public By getToast_attachFileSuccess() {
         By toast_attachFileSuccess = By.xpath("//android.view.View[@content-desc='Upload attachments is success']");
         return toast_attachFileSuccess;
+    }
+
+    public By getToast_createNoteSuccess() {
+        By toast_createNoteSuccess = By.xpath("//android.view.View[@content-desc='update notes success']");
+        return toast_createNoteSuccess;
     }
 }

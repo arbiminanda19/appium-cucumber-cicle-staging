@@ -1,7 +1,6 @@
 package stepDef;
 
 import com.github.javafaker.Faker;
-import com.mysql.cj.jdbc.JdbcConnection;
 import config.env;
 import helper.accessFile;
 import helper.dbConnection;
@@ -59,8 +58,14 @@ public class home extends env {
         );
         WebElement txt_companyName = driver.findElement(pageGeneral.getInput_Name());
         txt_companyName.click();
-        String companyName = "Company" + faker.number().numberBetween(11111, 99999);
-//        String companyName = dbConnection.getCompanyName();
+        String nameSource = "Random";
+        String companyName;
+        if (nameSource.equals("Database Test")){
+            companyName = dbConnection.getCompanyName();
+        } else {
+            companyName = "Company" + faker.number().numberBetween(11111, 99999);
+
+        }
         txt_companyName.sendKeys(companyName);
         accessFile.writeToFile(file_companyName, companyName);
     }
